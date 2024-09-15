@@ -9,7 +9,12 @@ load_dotenv()
 
 class Chain:
     def __init__(self):
-        self.llm = ChatGroq(temperature=0, groq_api_key=os.getenv("Groq_api_key"), model_name="llama-3.1-70b-versatile")
+        self.llm = ChatGroq(
+        temperature=0,
+        model_kwargs={"Groq_api_key": os.getenv("Groq_api_key")},
+        model_name="llama-3.1-70b-versatile"
+        )
+
 
     def extract_bullet_points(self, job_description_text):
         prompt_bullet_points = PromptTemplate.from_template(
